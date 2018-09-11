@@ -66,6 +66,7 @@
     <Compile Include="SportOpslag\ZwemvestOpslag.cs" />
     <Compile Include="Wachtrijen\WachtrijBeginWaterskibaan.cs" />
     <Compile Include="Wachtrijen\WachtrijInstructie.cs" />
+    <Compile Include="Wachtrijen\WachtrijStarten.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
