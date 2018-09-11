@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterSkiBaan", "WaterSkiBaan\WaterSkiBaan.csproj", "{76DF5771-59E1-482D-891C-43AF9BD6CE66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestWaterskibaan", "UnitTestWaterskibaan\UnitTestWaterskibaan.csproj", "{E990DC47-3415-4F7A-939F-30578D7823C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{76DF5771-59E1-482D-891C-43AF9BD6CE66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76DF5771-59E1-482D-891C-43AF9BD6CE66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76DF5771-59E1-482D-891C-43AF9BD6CE66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E990DC47-3415-4F7A-939F-30578D7823C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E990DC47-3415-4F7A-939F-30578D7823C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E990DC47-3415-4F7A-939F-30578D7823C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E990DC47-3415-4F7A-939F-30578D7823C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
