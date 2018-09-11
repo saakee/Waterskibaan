@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wachtrijen
+namespace WaterSkiBaan.Sporters
 {
-    public class WachtrijStarten
+    public class Wakeboarder : Sporter
     {
-        
+  
     }
 }
