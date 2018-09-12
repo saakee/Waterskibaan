@@ -46,6 +46,7 @@
     <Compile Include="Events\SportersEventArgs.cs" />
     <Compile Include="Events\WaterSkiBaanEvents.cs" />
     <Compile Include="Kabelbaan\Lijnen.cs" />
+    <Compile Include="Kabelbaan\LijnenInGebruik.cs" />
     <Compile Include="Kabelbaan\LijnenUitgerangeerd.cs" />
     <Compile Include="Kabelbaan\Obstakel.cs" />
     <Compile Include="Kabelbaan\ObstakelsInHetWater.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="SportOpslag\ZwemvestOpslag.cs" />
     <Compile Include="Wachtrijen\WachtrijBeginWaterskibaan.cs" />
     <Compile Include="Wachtrijen\WachtrijInstructie.cs" />
+    <Compile Include="Wachtrijen\WachtrijStarten.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
