@@ -8,9 +8,9 @@ namespace WaterSkiBaan.Kabelbaan
 {
     class LijnenInGebruik
     {
-        private LinkedList<Lijn> Lijnen;
-        private Queue<Lijn> LijnenUitgerangeerd;
-    
+        private LinkedList<Lijn> Lijnen = new LinkedList<Lijn>();
+        private Queue<Lijn> LijnenUitgerangeerd = new Queue<Lijn>();
+
 
         public void NeemLijnInGebruik(Lijn lijn)
         {
