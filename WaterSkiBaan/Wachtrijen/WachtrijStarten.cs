@@ -7,7 +7,7 @@ using WaterSkiBaan.Sporters;
 
 namespace WaterSkiBaan.Wachtrijen
 {
-    class WachtrijStarten
+    public class WachtrijStarten
     {
         Queue<Sporter> Wachtrij;
 
