@@ -14,7 +14,7 @@ namespace WaterSkiBaan.Kabelbaan
 
         public void NeemLijnInGebruik(Lijn lijn)
         {
-            Lijnen.AddLast(lijn);
+            Lijnen.AddFirst(lijn);
             lijn.Positie = 0;
         }
         
