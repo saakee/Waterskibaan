@@ -21,16 +21,18 @@ namespace WaterSkiBaan
         
         static ZwemvestOpslag zwemvestenStapel = new ZwemvestOpslag();
         static WakeboardOpslag wakeboardStapel = new WakeboardOpslag();
-        
+        static SkiOpslag skiStapel = new SkiOpslag();
+
         static LijnenUitgerangeerd lijnenUitgerangeerd = new LijnenUitgerangeerd();
         static ObstakelsInHetWater obstakelsInHetWater = new ObstakelsInHetWater();
 
+        static System.Timers.Timer timer = new System.Timers.Timer();
 
         static void Main(string[] args)
         {
 
             //skies wakeboards zwemvesten
-            VulOpslag();
+            //VulOpslag();
 
             ///////////////////////////////////////
             //Voordat events is uitgelegd...
@@ -38,39 +40,41 @@ namespace WaterSkiBaan
             //VoegRandomSportersToe(wachtrijBeginWaterskibaan.Wachtrij, 1000);
             //VoegRandomSportersToe(wachtrijInstructie.Wachtrij, 1000);
             //VoegRandomSportersToe(wachtrijStarten.Wachtrij, 1000);
-            //VoegRandomUitrustingToe(zwemvestenStapel, 1000, SportUitrustingType.zwemvest);
-            //VoegRandomUitrustingToe(wakeboardStapel, 1000, SportUitrustingType.wakeboard);
-            //VoegRandomUitrustingToe(skiStapel, 1000, SportUitrustingType.skies);
+            VoegRandomUitrustingToe(zwemvestenStapel, 1000, SportUitrustingType.zwemvest);
+            VoegRandomUitrustingToe(wakeboardStapel, 1000, SportUitrustingType.wakeboard);
+            VoegRandomUitrustingToe(skiStapel, 1000, SportUitrustingType.skies);
 
             ///////////////////////////////////////
             //Nadat events is uitgelegd
             ///////////////////////////////////////
-            //WaterSkiBaanEvents waterSkiBaanEvents = new WaterSkiBaanEvents();
+            WaterSkiBaanEvents waterSkiBaanEvents = new WaterSkiBaanEvents();
             //event nieuwe bezoeker
-            //waterSkiBaanEvents.SubcribeHandlerNieuweBezoeker(wachtrijBeginWaterskibaan.VoegSporterToeAanRij);
+            waterSkiBaanEvents.SubcribeHandlerNieuweBezoeker(wachtrijBeginWaterskibaan.VoegSporterToeAanRij);
             //event instructie afgelopen
-            //waterSkiBaanEvents.SubcribeHandlerInstructieAfgelopen(SportersPakkenUitrusting);
-            //waterSkiBaanEvents.SubcribeHandlerInstructieAfgelopen(SportersPakkenZwemvest);
-            //waterSkiBaanEvents.SubcribeHandlerInstructieAfgelopen(SportersVerlatenInstructie);
-            //waterSkiBaanEvents.SubcribeHandlerInstructieAfgelopen(SportersGaanNaarInstructie);
+            waterSkiBaanEvents.SubcribeHandlerInstructieAfgelopen(SportersPakkenUitrusting);
+            waterSkiBaanEvents.SubcribeHandlerInstructieAfgelopen(SportersPakkenZwemvest);
+            waterSkiBaanEvents.SubcribeHandlerInstructieAfgelopen(SportersVerlatenInstructie);
+            waterSkiBaanEvents.SubcribeHandlerInstructieAfgelopen(SportersGaanNaarInstructie);
 
-            //voordat events is uitgelegd
-            
+            timer.Interval = 1000;
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(LijnenVerplaatsenEvent);
+            timer.Start();
+
 
             for (int i = 0; i < 100; i++)
             {
 
 
-                //waterSkiBaanEvents.TriggerNieuweBezoeker(new Skier());
-                //waterSkiBaanEvents.TriggerNieuweBezoeker(new Wakeboarder());
-                //    waterSkiBaanEvents.TriggerInstructieAfgelopen(wachtrijInstructie.GetAlleCursisten());
-                //    waterSkiBaanEvents.TriggerLijnenVerplaatsen(lijnenInGebruik);
+                waterSkiBaanEvents.TriggerNieuweBezoeker(new Skier());
+                waterSkiBaanEvents.TriggerNieuweBezoeker(new Wakeboarder());
+                waterSkiBaanEvents.TriggerInstructieAfgelopen(wachtrijInstructie.GetAlleCursisten());
+                //waterSkiBaanEvents.TriggerLijnenVerplaatsen(lijnenInGebruik);
 
                 //print overzicht stapels uitrusting
                 Console.WriteLine("\n----------------------------------------");
                 Console.WriteLine("STAPELS");
                 Console.WriteLine($"ZWEMVESTEN \t {Program.zwemvestenStapel.ToString()}");
-                Console.WriteLine($"SKIES \t niet geïmplementeerd");
+                Console.WriteLine($"SKIES \t {Program.skiStapel.ToString()}");
                 Console.WriteLine($"WAKEBOARDS \t {Program.wakeboardStapel.ToString()}");
 
                 //print overzicht wachtrijen
@@ -89,6 +93,11 @@ namespace WaterSkiBaan
             }
         }
 
+        static private void LijnenVerplaatsenEvent(object sender, System.Timers.ElapsedEventArgs e)
+        {
+
+        }
+
         static void SportersPakkenUitrusting(object sender, SportersEventArgs args)
         {
             var cursisten = args.Sporters;
@@ -98,7 +107,7 @@ namespace WaterSkiBaan
 
                 if (c is Skier)
                 {
-                    throw new NotImplementedException("cursist moet skies pakken van stapel. Maar dit is nog niet geïmplementeerd");
+                    c.Uitrusting = skiStapel.PakSkies();
                 }
                 else
                 {
@@ -139,20 +148,20 @@ namespace WaterSkiBaan
             }
         }
 
-        static void VoegRandomSportersToe(Queue<Sporter> queue, int aantal)
-        {
-            for (int i = 0; i < aantal; i++)
-            {
-                if ((i % 2) == 0)
-                {
-                    queue.Enqueue(new Wakeboarder());
-                }
-                else
-                {
-                    queue.Enqueue(new Skier());
-                }
-            }
-        }
+        //static void VoegRandomSportersToe(Queue<Sporter> queue, int aantal)
+        //{
+        //    for (int i = 0; i < aantal; i++)
+        //    {
+        //        if ((i % 2) == 0)
+        //        {
+        //            queue.Enqueue(new Wakeboarder());
+        //        }
+        //        else
+        //        {
+        //            queue.Enqueue(new Skier());
+        //        }
+        //    }
+        //}
 
         static void VoegRandomUitrustingToe(IOpslag stapel, int aantal, SportUitrustingType type)
         {
@@ -168,26 +177,27 @@ namespace WaterSkiBaan
                 }
                 else if (type == SportUitrustingType.skies)
                 {
-                    //stapel.Afgeven(new Skies(RandomInteger()));
+                    stapel.Afgeven(new Skies(RandomInteger()));
                 }
             }
         }
 
-        static void VulOpslag()
-        {
-            for (var i = 0; i < 20; i++)
-            {
-                zwemvestenStapel.Afgeven(new Zwemvest(RandomInteger()));
-            }
-            for (var i = 0; i < 20; i++)
-            {
-                wakeboardStapel.Afgeven(new Wakeboard(RandomInteger()));
-            }
-            for (var i = 0; i < 20; i++)
-            {
-                //skiStapel.Afgeven(new Skies(RandomInteger()));
-            }
-        }
+        //static void VulOpslag()
+        //{
+        //    for (var i = 0; i < 20; i++)
+        //    {
+        //        zwemvestenStapel.Afgeven(new Zwemvest(RandomInteger()));
+        //    }
+        //    for (var i = 0; i < 20; i++)
+        //    {
+        //        wakeboardStapel.Afgeven(new Wakeboard(RandomInteger()));
+        //    }
+        //    for (var i = 0; i < 20; i++)
+        //    {
+        //        //skiStapel.Afgeven(new Skies(RandomInteger()));
+        //    }
+        //}
+        
 
         static Random _r = new Random();
 
