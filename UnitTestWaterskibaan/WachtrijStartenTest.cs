@@ -11,37 +11,28 @@ namespace UnitTestWaterskibaan
     public class WachtrijStartenTest
     {
         [TestMethod]
-        public void Test_InitializingWachtrijStarten_ShouldNotBeEqualToNull()
+        public void WachtrijStarten_InitializingWachtrijStarten_ShouldNotBeEqualToNull()
         {
             WachtrijStarten wachtrijStarten = new WachtrijStarten();
             Assert.IsNotNull(wachtrijStarten);
         }
+
         [TestMethod]
-        public void Test_AddingSporterToQueue_ShouldSucced()
+        public void WachtrijStarten_AddingSporterToQueue_ShouldSucceed()
         {
             WachtrijStarten wachtrijStarten = new WachtrijStarten();
             Wakeboarder wakeboarder = new Wakeboarder();
-            
-            wachtrijStarten.voegSporterToeAanRij(wakeboarder);
+
+            //Assert.IsTrue(wachtrijStarten.voegSporterToeAanRij(wakeboarder)); Dit werkt niet, omdat het return type voegSporterToeAanRij void is.    
         }
 
-
         [TestMethod]
-        public void Test_AddingMedewerkerToQueue_ShouldReturnException()
+        public void WachtrijStarten_AddingMedewerkerToQueue_ShouldReturnException()
         {
-            // dit werkt dus niet (compileert niet)
             WachtrijStarten wachtrijStarten = new WachtrijStarten();
             Skier medewerker = new Skier();
 
-            try
-            {
-                wachtrijStarten.voegSporterToeAanRij(medewerker);
-//                Assert.Fail("Exception throw FAIL!");
-            }
-            catch (ArgumentException)
-            {
-                // pass
-            }
+            wachtrijStarten.voegSporterToeAanRij(medewerker);
         }
 
     }
