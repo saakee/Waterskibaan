@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace WaterSkiBaan.Kabelbaan
 {
-    class LijnenInGebruik
+    public class LijnenInGebruik
     {
-        private LinkedList<Lijn> Lijnen = new LinkedList<Lijn>();
+        public LinkedList<Lijn> Lijnen = new LinkedList<Lijn>();
+        public LijnenVoorraad LijnenVoorraad { get; set; }
         private Queue<Lijn> LijnenUitgerangeerd = new Queue<Lijn>();
 
 
