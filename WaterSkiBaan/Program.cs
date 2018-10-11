@@ -154,8 +154,14 @@ namespace WaterSkiBaan
 
             if (lijnenInGebruik.Lijnen.Count > 0)
             {
+                bool positie1 = false;
 
-                if (lijnenInGebruik.Lijnen.First.Value.Equals(null))
+                foreach (var lijn in lijnenInGebruik.Lijnen)
+                {
+                    positie1 = lijn.Positie != 0;
+                }
+
+                if (positie1)
                 {
                     lijnenInGebruik.NeemLijnInGebruik(lijnenInGebruik.LijnenVoorraad.Lijnen.Dequeue());
                     lijnenInGebruik.Lijnen.First.Value.Sporter = _wachtrijStarten.Wachtrij.Dequeue();
