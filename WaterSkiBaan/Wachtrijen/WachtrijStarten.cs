@@ -9,7 +9,7 @@ namespace WaterSkiBaan.Wachtrijen
 {
     public class WachtrijStarten
     {
-        Queue<Sporter> Wachtrij;
+        public Queue<Sporter> Wachtrij;
 
         public WachtrijStarten()
         {
@@ -19,6 +19,11 @@ namespace WaterSkiBaan.Wachtrijen
         public void voegSporterToeAanRij(Sporter sporter)
         {
             Wachtrij.Enqueue(sporter);
+        }
+
+        public void haalSporterUitRij()
+        {
+            Wachtrij.Dequeue();
         }
     }
 }

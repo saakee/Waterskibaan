@@ -18,11 +18,14 @@ namespace WaterSkiBaan
     {
         static WachtrijBeginWaterskibaan wachtrijBeginWaterskibaan = new WachtrijBeginWaterskibaan();
         static WachtrijInstructie wachtrijInstructie = new WachtrijInstructie();
+        static WachtrijStarten _wachtrijStarten = new WachtrijStarten();
         
         static ZwemvestOpslag zwemvestenStapel = new ZwemvestOpslag();
         static WakeboardOpslag wakeboardStapel = new WakeboardOpslag();
         static SkiOpslag skiStapel = new SkiOpslag();
 
+        static LijnenVoorraad _lijnenVoorraad = new LijnenVoorraad();
+        static LijnenInGebruik lijnenInGebruik = new LijnenInGebruik() { LijnenVoorraad = _lijnenVoorraad };
         static LijnenUitgerangeerd lijnenUitgerangeerd = new LijnenUitgerangeerd();
         static ObstakelsInHetWater obstakelsInHetWater = new ObstakelsInHetWater();
 
@@ -49,6 +52,8 @@ namespace WaterSkiBaan
             ///////////////////////////////////////
             WaterSkiBaanEvents waterSkiBaanEvents = new WaterSkiBaanEvents();
             //event nieuwe bezoeker
+            waterSkiBaanEvents.SubscribeHandlerLijnenVerplaatsen(ControleerPositie1);
+            waterSkiBaanEvents.SubscribeHandlerLijnenVerplaatsen(HoogPositieOp);
             waterSkiBaanEvents.SubcribeHandlerNieuweBezoeker(wachtrijBeginWaterskibaan.VoegSporterToeAanRij);
             //event instructie afgelopen
             waterSkiBaanEvents.SubcribeHandlerInstructieAfgelopen(SportersPakkenUitrusting);
@@ -56,9 +61,9 @@ namespace WaterSkiBaan
             waterSkiBaanEvents.SubcribeHandlerInstructieAfgelopen(SportersVerlatenInstructie);
             waterSkiBaanEvents.SubcribeHandlerInstructieAfgelopen(SportersGaanNaarInstructie);
 
-            timer.Interval = 1000;
-            timer.Elapsed += new System.Timers.ElapsedEventHandler(LijnenVerplaatsenEvent);
-            timer.Start();
+            //timer.Interval = 1000;
+            //timer.Elapsed += new System.Timers.ElapsedEventHandler(LijnenVerplaatsenEvent);
+            //timer.Start();
 
 
             for (int i = 0; i < 100; i++)
@@ -68,7 +73,7 @@ namespace WaterSkiBaan
                 waterSkiBaanEvents.TriggerNieuweBezoeker(new Skier());
                 waterSkiBaanEvents.TriggerNieuweBezoeker(new Wakeboarder());
                 waterSkiBaanEvents.TriggerInstructieAfgelopen(wachtrijInstructie.GetAlleCursisten());
-                //waterSkiBaanEvents.TriggerLijnenVerplaatsen(lijnenInGebruik);
+                waterSkiBaanEvents.TriggerLijnenVerplaatsen(lijnenInGebruik);
 
                 //print overzicht stapels uitrusting
                 Console.WriteLine("\n----------------------------------------");
@@ -91,11 +96,6 @@ namespace WaterSkiBaan
             {
                 Thread.Sleep(1000);
             }
-        }
-
-        static private void LijnenVerplaatsenEvent(object sender, System.Timers.ElapsedEventArgs e)
-        {
-
         }
 
         static void SportersPakkenUitrusting(object sender, SportersEventArgs args)
@@ -145,6 +145,41 @@ namespace WaterSkiBaan
                     wachtrijInstructie.Wachtrij.Enqueue(wachtrijBeginWaterskibaan.Wachtrij.Dequeue());
                 }
 
+            }
+        }
+
+        static public void ControleerPositie1(object sender, LijnEventArgs args)
+        {
+            LijnenInGebruik lijnenInGebruik = args.LijnenInGebruik;
+
+            if (lijnenInGebruik.Lijnen.Count > 0)
+            {
+                bool positie1 = false;
+
+                foreach (var lijn in lijnenInGebruik.Lijnen)
+                {
+                    positie1 = lijn.Positie != 0;
+                }
+
+                if (positie1)
+                {
+                    lijnenInGebruik.NeemLijnInGebruik(lijnenInGebruik.LijnenVoorraad.Lijnen.Dequeue());
+                    lijnenInGebruik.Lijnen.First.Value.Sporter = _wachtrijStarten.Wachtrij.Dequeue();
+                }
+            }
+        }
+
+        static public void HoogPositieOp(object sender, LijnEventArgs args)
+        {
+            LijnenInGebruik lijnenInGebruik = args.LijnenInGebruik;
+            foreach (Lijn lijn in lijnenInGebruik.Lijnen)
+            {
+                Console.WriteLine("De lijn is misschien null");
+                if (!lijn.Equals(null))
+                {
+                    Console.WriteLine("De lijn is zeker weten geen null");
+                    lijn.Positie++;
+                }
             }
         }
 
