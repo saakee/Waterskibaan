@@ -16,12 +16,12 @@ namespace WaterSkiBaan.Wachtrijen
             Wachtrij = new Queue<Sporter>();
         }
 
-        public void voegSporterToeAanRij(Sporter sporter)
+        public void VoegSporterToeAanRij(Sporter sporter)
         {
             Wachtrij.Enqueue(sporter);
         }
 
-        public void haalSporterUitRij()
+        public void HaalSporterUitRij()
         {
             Wachtrij.Dequeue();
         }
