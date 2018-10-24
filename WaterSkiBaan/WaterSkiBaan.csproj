@@ -62,7 +62,7 @@
     <Compile Include="Sporters\Sporter.cs" />
     <Compile Include="Sporters\Wakeboarder.cs" />
     <Compile Include="SportOpslag\IOpslag.cs" />
-    <Compile Include="SportOpslag\SkiOpslag.cs" />
+    <Compile Include="SportOpslag\SkieOpslag.cs" />
     <Compile Include="SportUitrusting\Skies.cs" />
     <Compile Include="SportUitrusting\SportArtikel.cs" />
     <Compile Include="SportUitrusting\Wakeboard.cs" />

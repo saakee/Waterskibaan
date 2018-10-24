@@ -7,7 +7,7 @@ using WaterSkiBaan.SportUitrusting;
 
 namespace WaterSkiBaan.SportOpslag
 {
-    public class SkiOpslag : IOpslag
+    public class SkieOpslag : IOpslag
     {
         private Stack<Skies> _opslag { get; set; } = new Stack<Skies>();
 

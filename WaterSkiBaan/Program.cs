@@ -22,7 +22,7 @@ namespace WaterSkiBaan
         
         static ZwemvestOpslag zwemvestenStapel = new ZwemvestOpslag();
         static WakeboardOpslag wakeboardStapel = new WakeboardOpslag();
-        static SkiOpslag skiStapel = new SkiOpslag();
+        static SkieOpslag skiStapel = new SkieOpslag();
 
         static LijnenVoorraad _lijnenVoorraad = new LijnenVoorraad();
         static LijnenInGebruik lijnenInGebruik = new LijnenInGebruik() { LijnenVoorraad = _lijnenVoorraad };

@@ -9,7 +9,7 @@ namespace WaterSkiBaan.Wachtrijen
 {
     public class WachtrijStarten
     {
-        public Queue<Sporter> Wachtrij;
+        public Queue<Sporter> Wachtrij { get; set; } = new Queue<Sporter>();
 
         public WachtrijStarten()
         {
