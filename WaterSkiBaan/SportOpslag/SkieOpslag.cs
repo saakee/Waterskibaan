@@ -20,7 +20,7 @@ namespace WaterSkiBaan.SportOpslag
             }
             catch (InvalidCastException e)
             {
-                Console.WriteLine("Errrr. " + e.Message);
+                Console.WriteLine("Gelieve enkel Skies inleveren");
             }
 
             
