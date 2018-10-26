@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using WaterSkiBaan.SportOpslag;
 using WaterSkiBaan.SportUitrusting;
@@ -11,8 +12,14 @@ namespace WaterSkiBaan.SportOpslag
 
         public void Afgeven(SportArtikel sportartikel)
         {
-            var wakeboard = (Wakeboard)sportartikel;
-            _opslag.Push(wakeboard);
+            try
+            {
+                _opslag.Push((Wakeboard)sportartikel);
+            }
+            catch (InvalidCastException e)
+            {
+                Console.WriteLine("Gelieve enkel Wakeboard inleveren");
+            }
         }
 
         public Wakeboard PakWakeboard()

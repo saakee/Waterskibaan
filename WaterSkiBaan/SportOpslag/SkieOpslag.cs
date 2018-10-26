@@ -13,7 +13,6 @@ namespace WaterSkiBaan.SportOpslag
 
         public void Afgeven(SportArtikel sportartikel)
         {
-            // zou het niet netjes zijn om hier een exception handling in te bouwen als het casten niet lukt (voor alle 3?)?
             try
             {
                 _opslag.Push((Skies)sportartikel);
@@ -22,8 +21,6 @@ namespace WaterSkiBaan.SportOpslag
             {
                 Console.WriteLine("Gelieve enkel Skies inleveren");
             }
-
-            
         }
 
         public Skies PakSkies()
