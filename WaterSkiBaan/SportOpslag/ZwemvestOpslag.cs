@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using WaterSkiBaan.SportOpslag;
 using WaterSkiBaan.SportUitrusting;
@@ -11,8 +12,14 @@ namespace WaterSkiBaan.SportOpslag
 
         public void Afgeven(SportArtikel sportartikel)
         {
-            var zwemvest = (Zwemvest)sportartikel;
-            _opslag.Push(zwemvest);
+            try
+            {
+                _opslag.Push((Zwemvest)sportartikel);
+            }
+            catch (InvalidCastException e)
+            {
+                Console.WriteLine("Gelieve enkel Zwemvest inleveren");
+            }
         }
 
         public Zwemvest PakZwemvest()

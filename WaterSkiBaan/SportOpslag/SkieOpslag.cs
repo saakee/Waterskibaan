@@ -9,12 +9,18 @@ namespace WaterSkiBaan.SportOpslag
 {
     public class SkieOpslag : IOpslag
     {
-        private Stack<Skies> _opslag { get; set; } = new Stack<Skies>();
+        private Stack<Skies> _opslag { get; } = new Stack<Skies>();
 
         public void Afgeven(SportArtikel sportartikel)
         {
-            var skies = (Skies)sportartikel;
-            _opslag.Push(skies);
+            try
+            {
+                _opslag.Push((Skies)sportartikel);
+            }
+            catch (InvalidCastException e)
+            {
+                Console.WriteLine("Gelieve enkel Skies inleveren");
+            }
         }
 
         public Skies PakSkies()
